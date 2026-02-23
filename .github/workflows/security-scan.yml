@@ -14,9 +14,9 @@ jobs:
           path: nvidia-gpu-nim-toolkit
 
       - name: Download TMAS and Scan Repo for Open Source Vulnerabilities and Secrets
-        uses: trendmicro/tmas-scan-action@v2
+        uses: trendmicro/tmas-scan-action@main
         with:
-          version: '2' # Recommended: pin to major version for automatic updates within v2.x.x
+          version: '3.1.0' # Recommended: pin to major version for automatic updates within v2.x.x
           vulnerabilitiesScan: true
           malwareScan: false
           secretsScan: true
