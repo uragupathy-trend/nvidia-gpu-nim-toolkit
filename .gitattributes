@@ -1,0 +1,142 @@
+# Set default behavior to automatically normalize line endings.
+* text=auto
+
+# Set the merge driver for release notes and other versioned files
+CHANGELOG.md merge=union
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+*.py text eol=lf
+*.pyx text eol=lf
+*.pxd text eol=lf
+*.pxi text eol=lf
+*.pxd.in text eol=lf
+*.pxi.in text eol=lf
+
+# Configuration files
+*.cfg text eol=lf
+*.conf text eol=lf
+*.ini text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Documentation
+*.md text eol=lf
+*.rst text eol=lf
+*.txt text eol=lf
+
+# Scripts
+*.sh text eol=lf
+*.bash text eol=lf
+*.fish text eol=lf
+*.zsh text eol=lf
+
+# Windows scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Docker files
+Dockerfile text eol=lf
+*.dockerfile text eol=lf
+docker-compose*.yml text eol=lf
+
+# CI/CD files
+*.yml text eol=lf
+*.yaml text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.ttf binary
+*.otf binary
+
+# Archives
+*.7z binary
+*.dmg binary
+*.gz binary
+*.iso binary
+*.jar binary
+*.rar binary
+*.tar binary
+*.zip binary
+
+# Executables
+*.exe binary
+*.pyc binary
+*.pyo binary
+*.so binary
+*.dll binary
+*.dylib binary
+
+# Python specific binaries
+*.pickle binary
+*.pkl binary
+*.npy binary
+*.npz binary
+
+# NVIDIA/CUDA specific binaries
+*.cubin binary
+*.fatbin binary
+*.ptx binary
+
+# Security and certificates
+*.key binary
+*.pem binary
+*.crt binary
+*.cert binary
+*.p12 binary
+*.pfx binary
+
+# Data files
+*.db binary
+*.sqlite binary
+*.sqlite3 binary
+*.h5 binary
+*.hdf5 binary
+
+# Model files
+*.model binary
+*.pt binary
+*.pth binary
+*.onnx binary
+*.tflite binary
+*.pb binary
+
+# Archive linguist settings for proper GitHub language detection
+*.py linguist-language=Python
+*.pyx linguist-language=Python
+*.pxd linguist-language=Python
+*.pxi linguist-language=Python
+
+# Documentation
+docs/* linguist-documentation
+*.md linguist-documentation
+*.rst linguist-documentation
+
+# Examples and tests
+examples/* linguist-documentation
+tests/* linguist-vendored
+
+# Generated files
+*.svg linguist-generated=true
+*_pb2.py linguist-generated=true
+*_pb2_grpc.py linguist-generated=true
+
+# Exclude from diff
+*.svg -diff
+*.png -diff
+*.jpg -diff
+*.jpeg -diff
+*.gif -diff
