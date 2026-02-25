@@ -8,6 +8,17 @@
 # GitHub Actions (already scanned in separate workflows)
 .github/
 
+# IMPORTANT: Keep these files for dependency vulnerability scanning
+# !requirements.txt
+# !pyproject.toml
+# !setup.py
+# !Pipfile
+# !Pipfile.lock
+# !package.json
+# !yarn.lock
+# !go.mod
+# !go.sum
+
 # Python cache and compiled files
 __pycache__/
 *.py[cod]

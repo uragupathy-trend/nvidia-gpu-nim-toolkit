@@ -21,6 +21,6 @@ jobs:
           malwareScan: false
           secretsScan: true
           artifact: dir:./nvidia-gpu-nim-toolkit
-          additionalArgs: --region=ap-southeast-2 -vvv --exclude-path .git --exclude-path .github --exclude-path __pycache__ --exclude-path .pytest_cache --exclude-pattern "*.pyc" --exclude-pattern "*.pyo" --exclude-pattern "*.so" --exclude-pattern "*.dylib" --exclude-pattern "*.dll"
+          additionalArgs: --region=ap-southeast-2 -vvv --exclude-path .git --exclude-path __pycache__ --exclude-path .pytest_cache --exclude-pattern "*.pyc" --exclude-pattern "*.pyo" --exclude-pattern "*.so" --exclude-pattern "*.dylib" --exclude-pattern "*.dll"
           tmasApiKey: ${{ secrets.TMAS_API_KEY }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
