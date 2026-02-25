@@ -21,6 +21,6 @@ jobs:
           malwareScan: false
           secretsScan: true
           artifact: dir:./nvidia-gpu-nim-toolkit
-          additionalArgs: --region=ap-southeast-2
+          additionalArgs: --region=ap-southeast-2 -vvv
           tmasApiKey: ${{ secrets.TMAS_API_KEY }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
