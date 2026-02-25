@@ -1,0 +1,98 @@
+# TMAS ignore file - exclude these paths and patterns from scanning
+
+# Git files and directories
+.git/
+.gitignore
+.gitattributes
+
+# GitHub Actions (already scanned in separate workflows)
+.github/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.so
+*.dylib
+*.dll
+
+# Test cache
+.pytest_cache/
+.tox/
+.coverage
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env
+
+# Node modules (if any)
+node_modules/
+
+# Security scan results
+tmas-results/
+bandit-report.json
+safety-report.json
+
+# Binary files that shouldn't be scanned
+*.exe
+*.bin
+*.img
+*.iso
+*.dmg
+*.pkg
+*.msi
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Media files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.avi
+*.mov
+*.pdf
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3

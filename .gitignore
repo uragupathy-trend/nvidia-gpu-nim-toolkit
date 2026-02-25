@@ -168,6 +168,11 @@ logs/
 bandit-report.json
 safety-report.json
 tmas-results/
+*.sarif
+scan-report.json
+
+# TMAS configuration is tracked, but results are ignored
+!.tmasignore
 
 # Temporary files
 *.tmp
