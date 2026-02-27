@@ -1,11 +1,15 @@
-name: TMAS Scan
+name: TMAS Security Scan
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  tmas-scan:
-    name: TMAS Repo Scan
+  # Repository and dependency scanning
+  tmas-repo-scan:
+    name: TMAS Repository Scan
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -13,10 +17,10 @@ jobs:
         with:
           path: nvidia-gpu-nim-toolkit
 
-      - name: Download TMAS and Scan Repo for Open Source Vulnerabilities and Secrets
+      - name: TMAS Repository and Dependency Scan
         uses: trendmicro/tmas-scan-action@main
         with:
-          version: '2' # Recommended: pin to major version for automatic updates within v2.x.x
+          version: '2'
           vulnerabilitiesScan: true
           malwareScan: false
           secretsScan: true
@@ -24,3 +28,57 @@ jobs:
           additionalArgs: --region=ap-southeast-2 -vvv --exclude-path .git --exclude-path __pycache__ --exclude-path .pytest_cache --exclude-pattern "*.pyc" --exclude-pattern "*.pyo" --exclude-pattern "*.so" --exclude-pattern "*.dylib" --exclude-pattern "*.dll"
           tmasApiKey: ${{ secrets.TMAS_API_KEY }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  # Container image scanning
+  tmas-container-scan:
+    name: TMAS Container Image Scan
+    runs-on: ubuntu-22.04
+    needs: tmas-repo-scan
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: nvidia-gpu-nim-toolkit:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          outputs: type=docker,dest=/tmp/nvidia-gpu-nim-toolkit.tar
+
+      - name: TMAS Container Image Security Scan
+        uses: trendmicro/tmas-scan-action@main
+        with:
+          version: '2'
+          vulnerabilitiesScan: true
+          malwareScan: true
+          secretsScan: true
+          artifact: docker:/tmp/nvidia-gpu-nim-toolkit.tar
+          additionalArgs: --region=ap-southeast-2 -vvv
+          tmasApiKey: ${{ secrets.TMAS_API_KEY }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log in to GitHub Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push to GitHub Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/nvidia-gpu-nim-toolkit:latest
+            ghcr.io/${{ github.repository_owner }}/nvidia-gpu-nim-toolkit:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

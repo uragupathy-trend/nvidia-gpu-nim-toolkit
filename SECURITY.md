@@ -6,6 +6,23 @@ This repository uses **Trend Micro Application Security (TMAS)** for comprehensi
 
 ### What TMAS Scans
 
+#### 🐳 **Container Image Vulnerability Scanning**
+TMAS automatically scans the Docker container image for security vulnerabilities:
+
+**Container Components:**
+- `nvidia/cuda:12.2.0-runtime-ubuntu22.04` - NVIDIA CUDA base image
+- Ubuntu 22.04 system packages and libraries
+- Python 3.11 runtime and installed packages
+- NVIDIA GPU libraries and drivers
+- Application dependencies and configurations
+
+**Security Checks:**
+- 🔍 **Base Image CVEs** - Known vulnerabilities in Ubuntu and CUDA layers
+- 📦 **Package Vulnerabilities** - Security issues in installed system packages
+- 🛡️ **Malware Detection** - Scanning for malicious code in container layers
+- 🕵️ **Secrets Scanning** - Detection of exposed credentials or keys
+- 🔒 **Configuration Analysis** - Container security best practices
+
 #### 🔍 **Dependency Vulnerability Scanning**
 TMAS automatically scans all Python packages in `requirements.txt` for known vulnerabilities:
 
