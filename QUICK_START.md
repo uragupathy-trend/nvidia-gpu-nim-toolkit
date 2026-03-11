@@ -53,8 +53,8 @@ print(get_available_features())
 
 - GitHub Actions CI/CD pipeline
 - Trend Micro Application Security (TMAS) scanning
-- Automated security vulnerability detection
-- Container security scanning
+- Automated security vulnerability detection for AI/ML dependencies
+- Comprehensive Python package security analysis
 
 ## Project Structure
 

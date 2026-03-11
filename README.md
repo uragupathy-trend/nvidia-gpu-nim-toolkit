@@ -14,7 +14,7 @@ A comprehensive Python toolkit for GPU monitoring and NVIDIA NIM inference with 
 - 📊 **Rich CLI**: Beautiful command-line interface with progress bars and tables
 - 📈 **Monitoring**: Continuous GPU monitoring with data export capabilities
 - 🧪 **Testing**: Comprehensive test suite with pytest
-- 🐳 **Docker Ready**: Containerized deployment support
+- 📦 **Easy Installation**: Simple pip-based installation and setup
 
 ## Quick Start
 
@@ -84,15 +84,6 @@ pre-commit install
 pip install nvidia-gpu-nim-toolkit
 ```
 
-### Docker Installation
-
-```bash
-# Build the Docker image
-docker build -t nvidia-gpu-nim-toolkit .
-
-# Run with GPU support
-docker run --gpus all -it nvidia-gpu-nim-toolkit nvidia-toolkit system-info
-```
 
 ## Usage Examples
 
@@ -218,13 +209,13 @@ class NIMClient:
 
 ## Security
 
-This project integrates with Trend Micro Application Security (TMAS) for continuous security scanning using the official `trendmicro/tmas-scan-action@v2`:
+This project integrates with Trend Micro Application Security (TMAS) for continuous security scanning using the official `trendmicro/tmas-scan-action@main`:
 
 ### TMAS Security Features
-- **Vulnerability Scanning**: ✅ Identifies security vulnerabilities in dependencies
+- **Vulnerability Scanning**: ✅ Identifies security vulnerabilities in AI/ML dependencies
 - **Secrets Detection**: ✅ Scans for exposed API keys, passwords, and sensitive data  
-- **Code Analysis**: Static analysis for security issues
-- **Container Security**: Docker image vulnerability scanning
+- **Code Analysis**: Static analysis for security issues in Python code
+- **Dependency Analysis**: Comprehensive scanning of all Python packages including AI libraries
 
 ### Setup TMAS Integration
 
@@ -338,16 +329,17 @@ nvidia-smi
 # Check if NIM service is running
 curl http://localhost:8000/health
 
-# Start NIM service (example)
-docker run -d --gpus all -p 8000:8000 nvcr.io/nvidia/nim:latest
+# Follow NVIDIA NIM installation guide for your setup
+# https://docs.nvidia.com/nim/
 ```
 
 **Permission errors:**
 ```bash
-# Add user to docker group (Linux)
-sudo usermod -a -G docker $USER
+# Ensure proper file permissions for the toolkit
+chmod +x nvidia-toolkit
 
-# Restart shell session
+# Check Python environment permissions
+python -c "import nvidia_toolkit; print('Access OK')"
 ```
 
 ### Debug Mode
