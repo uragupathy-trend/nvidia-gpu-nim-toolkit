@@ -37,7 +37,7 @@ jobs:
           malwareScan: false
           secretsScan: false
           artifact: dir:./pip-packages
-          additionalArgs: --region=ap-southeast-2 -vvv --exclude-pattern "*.pyc" --exclude-pattern "*.pyo" 
+          additionalArgs: --region=ap-southeast-2 -vvv
           tmasApiKey: ${{ secrets.TMAS_API_KEY }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
