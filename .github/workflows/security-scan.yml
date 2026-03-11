@@ -36,9 +36,21 @@ jobs:
           vulnerabilitiesScan: true
           malwareScan: false
           secretsScan: false
-          artifact: dir:./pip-packages
+          artifact: dir:./pip-packages/
           additionalArgs: --region=ap-southeast-2 -vvv
           tmasApiKey: ${{ secrets.TMAS_API_KEY }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: TMAS Scan Installed Dependencies nvidia_ml_py-13.590.48.dist-info
+        uses: trendmicro/tmas-scan-action@main
+        with:
+          version: '2'
+          vulnerabilitiesScan: true
+          malwareScan: false
+          secretsScan: false
+          artifact: dir:./pip-packages/nvidia_ml_py-13.590.48.dist-info/
+          additionalArgs: --region=ap-southeast-2 -vvv
+          tmasApiKey: ${{ secrets.TMAS_API_KEY }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}    
 
 
