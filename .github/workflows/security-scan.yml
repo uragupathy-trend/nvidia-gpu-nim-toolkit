@@ -7,9 +7,9 @@ on:
     branches: [ main ]
 
 jobs:
-  # Repository and dependency scanning
-  tmas-repo-scan:
-    name: TMAS Repository Scan
+  # Comprehensive security scanning with pip install and package scanning
+  tmas-security-scan:
+    name: TMAS Security Scan
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -17,7 +17,31 @@ jobs:
         with:
           path: nvidia-gpu-nim-toolkit
 
-      - name: TMAS Repository and Dependency Scan
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          cd nvidia-gpu-nim-toolkit
+          pip install -r requirements.txt --target ../pip-packages
+          pip install -e . --target ../pip-packages
+
+      - name: TMAS Scan Installed Dependencies
+        uses: trendmicro/tmas-scan-action@main
+        with:
+          version: '2'
+          vulnerabilitiesScan: true
+          malwareScan: false
+          secretsScan: false
+          artifact: dir:./pip-packages
+          additionalArgs: --region=ap-southeast-2 -vvv --exclude-pattern "*.pyc" --exclude-pattern "*.pyo" 
+          tmasApiKey: ${{ secrets.TMAS_API_KEY }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: TMAS Scan Source Code
         uses: trendmicro/tmas-scan-action@main
         with:
           version: '2'
@@ -25,7 +49,7 @@ jobs:
           malwareScan: false
           secretsScan: true
           artifact: dir:./nvidia-gpu-nim-toolkit
-          additionalArgs: --region=ap-southeast-2 -vvv 
+          additionalArgs: --region=ap-southeast-2 -vvv --exclude-path .git --exclude-path __pycache__ --exclude-path .pytest_cache --exclude-pattern "*.pyc" --exclude-pattern "*.pyo"
           tmasApiKey: ${{ secrets.TMAS_API_KEY }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
