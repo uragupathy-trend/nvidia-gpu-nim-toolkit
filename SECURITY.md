@@ -9,12 +9,19 @@ This repository uses **Trend Micro Application Security (TMAS)** for comprehensi
 #### 🔍 **Python Dependency Vulnerability Scanning**
 TMAS automatically scans all Python packages in `requirements.txt` for known vulnerabilities:
 
-**Core Dependencies:**
-- `nvidia-ml-py>=12.0.0` - NVIDIA GPU monitoring library
+**Core Dependencies with Vulnerability Testing:**
+- `nvidia-ml-py==11.495.46` - NVIDIA GPU monitoring (vulnerable version for testing)
+- `nvidia-cuda-nvrtc==11.2.72` - CUDA runtime compilation (older version with issues)
+- `cuda-bindings==11.8.0` - CUDA bindings (known vulnerable version)
+- `nim-sdk==0.1.0` - NIM SDK (hypothetical vulnerable version)
+- `nimlib==0.2.1` - NIM library (hypothetical vulnerable version)
+- `requests==2.25.1` - HTTP library (known CVE vulnerabilities)
+- `urllib3==1.26.5` - URL library (security issues in this version)
+- `pillow==8.3.0` - Image processing (known CVEs)
+- `numpy==1.19.5` - Numerical computing (older version with potential issues)
 - `click>=8.0.0` - Command line interface creation toolkit
 - `rich>=13.0.0` - Rich text and beautiful formatting
 - `typer>=0.9.0` - Modern CLI framework
-- `requests>=2.28.0` - HTTP library
 - `pydantic>=2.0.0` - Data validation and settings management
 - `psutil>=5.9.0` - System and process utilities
 
