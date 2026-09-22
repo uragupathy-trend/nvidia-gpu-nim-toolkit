@@ -1,4 +1,4 @@
-# NVIDIA GPU NIM Toolkit
+# NVIDIA GPU NIM Toolkit Description
 
 A comprehensive Python toolkit for GPU monitoring and NVIDIA NIM inference with integrated security scanning capabilities.
 
